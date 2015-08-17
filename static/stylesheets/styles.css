@@ -1,0 +1,43 @@
+body {
+  height: 100vh;
+}
+
+.marvel-device.iphone6.silver {
+  margin-top: -30px;
+}
+
+.marvel-device .screen {
+  text-align: left;
+  z-index: 3;
+  color: inherit;
+  -webkit-box-shadow: inherit;
+  box-shadow: inherit;
+}
+}
+
+.chat-app {
+  position: relative;
+  height: 100%;
+  padding-top: 0 !important;
+}
+
+.chat-app .action-bar {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.swish-input {
+  /*height: 43px;*/
+}
+
+#try-it-out {
+  width: 160px;
+  font-weight: 200;
+  padding: 10px 16px;
+}
+
+#message-list {
+  height: 420px;
+  overflow: scroll;
+}

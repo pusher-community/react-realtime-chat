@@ -1,17 +1,46 @@
 <html>
 <head>
   <title>Realtime Chat with Pusher + React</title>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/development.css">
+  <link rel="stylesheet" href="/static/stylesheets/devices.min.css" type="text/css">
+  <link rel="stylesheet" type="text/css" href="/static/stylesheets/styles.css">
+  <script src="https://cdn.rawgit.com/samsonjs/strftime/master/strftime-min.js"></script>
   <script src="https://fb.me/react-0.13.3.js"></script>
   <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://js.pusher.com/2.2/pusher.min.js"></script>
-  <script src="/static/javascripts/ui_components/InputBar.js" type="text/jsx"></script>
   <script src="/static/javascripts/ui_components/Messages.js" type="text/jsx"></script>
   <script src="/static/javascripts/ui_components/WelcomeView.js" type="text/jsx"></script>
   <script src="/static/javascripts/ui_components/MainView.js" type="text/jsx"></script> 
   <script src="/static/javascripts/ui_components/Chat.js" type="text/jsx"></script>
 </head>
-<body>
+<body class="blue-gradient-background">
+
+  <div class="jamie-patels-favourite-div"></div>
+  <div class="navbar navbar-inverse navbar-default" role="navigation">
+    <div class="container navbar-container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-brand">
+          <a href="/"><img class="full-logo" src="/static/images/pusher-logo.png" width="111" height="37"></a>
+          <a href="/"><img class="small-logo" src="/static/images/pusher-logo-p.png" height="37"></a>
+        </div>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav" id="nav-ul">
+          <li><a class="signup-link" href="/signup">Create a Free Account</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 
   <div id="app">
   </div>
