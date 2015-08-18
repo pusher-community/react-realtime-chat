@@ -32,6 +32,17 @@ var MainView = React.createClass({
 
     }, this);
 
+    $(document).ready(function(){
+      $('#msg-input').emojiPicker({
+        height: '150px',
+        width: '200px',
+        button: false
+      }); 
+
+    });
+
+
+
   },
 
   sendMessage: function(text){
@@ -64,6 +75,10 @@ var MainView = React.createClass({
     this.sendMessage(text);
   },
 
+  toggleEmoji: function(evt){
+      $('#msg-input').emojiPicker('toggle');
+  },
+
   render: function() {
 
     if (!this.props.name) var style = {display:'none'}
@@ -74,11 +89,10 @@ var MainView = React.createClass({
         <Messages messages={this.state.messages}  />
 
         <div className="action-bar">
-          <div className="option more col-xs-1 white-background">+</div>
-          <textarea id="msg-input" className="input-message col-xs-9" placeholder="Your message" onKeyPress={this._onEnter}></textarea>
           <div className="option col-xs-1 white-background">
-            <span className="fa fa-smile-o light-grey"></span>
+            <span id="emoji" onClick={this.toggleEmoji} className="fa fa-smile-o light-grey"></span>
           </div>
+          <textarea id="msg-input" className="input-message col-xs-10" placeholder="Your message" onKeyPress={this._onEnter}></textarea>
           <div className="option col-xs-1 green-background send-message" onClick={this._onClick}>
             <span className="white light fa fa-paper-plane-o"></span>
           </div>

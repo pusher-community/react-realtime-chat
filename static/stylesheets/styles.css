@@ -13,6 +13,22 @@ body {
   -webkit-box-shadow: inherit;
   box-shadow: inherit;
 }
+
+.action-bar {
+  width: 330px;
+}
+
+.option {
+  width: 40px;
+  padding-top: 8px;
+}
+
+span.emoji {
+  font-family: initial;
+}
+
+#msg-input {
+  width: 245px;
 }
 
 .chat-app {
