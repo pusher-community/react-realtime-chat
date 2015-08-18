@@ -6,6 +6,12 @@ var Chat = React.createClass({
     };
   },
 
+  _onClick: function(){
+    var input = document.getElementById('input-name');
+    var name = input.value;
+    this.setState({name: name});
+  },
+
   _onName: function(e){
     if (e.nativeEvent.keyCode != 13) return;
     var name = e.target.value;
@@ -15,7 +21,7 @@ var Chat = React.createClass({
   render: function() {
     return (
       <div>
-        <WelcomeView name={this.state.name} _onName={this._onName} />
+        <WelcomeView name={this.state.name} _onClick={this._onClick} _onName={this._onName} />
         <MainView name={this.state.name} />
       </div>
     );

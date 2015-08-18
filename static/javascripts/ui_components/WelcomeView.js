@@ -12,8 +12,10 @@ var WelcomeView = React.createClass({
         <div style={{marginTop: '20px'}}>
           <p className="light white">Enter your Twitter name and start chatting!</p>
           <div style={{marginTop: '20px'}}>
-            <input className="swish-input" style={{width: '350'}} onKeyPress={this.props._onName} placeholder="Enter Twitter ID here" />
-            <a className="button bright-blue-hover btn-white" id="try-it-out"> Try it out </a>
+            <input id="input-name" className="swish-input" style={{width: '350'}} onKeyPress={this.props._onName} placeholder="Enter Twitter ID here" />
+            <button className="bright-blue-hover btn-white" onClick={this.props._onClick} id="try-it-out"> 
+              Try it out 
+            </button>
           </div>
         </div>
       )
