@@ -2,7 +2,7 @@ var MainView = React.createClass({
 
   getInitialState: function() {
 
-    var messages = ['Hi there!', 'Welcome to your chat app', 'See the tutorial at http://blog.pusher.com/react-chat'];
+    var messages = ['Hi there! 😘', 'Welcome to your chat app', 'See the tutorial at http://blog.pusher.com/react-chat'];
     messages = messages.map(function(msg){
       return {
         name: 'pusher',

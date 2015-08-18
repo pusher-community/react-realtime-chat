@@ -1,3 +1,6 @@
+var UNICODE_REGEX = /[^\u0000-\u007F]+/;
+var URL_REGEX = /https?:\/\/?[\da-z\.-]+\.[a-z\.]{2,6}[\/\w \.-]*\/?/;
+
 var Messages = React.createClass({
 
   render: function() {
@@ -5,11 +8,19 @@ var Messages = React.createClass({
     var messageList = this.props.messages.map(function(message){
       var text = message.text;
 
-      var emojiMatches = text.match(/[^\u0000-\u007F]+/);
+      var emojiMatches = text.match(UNICODE_REGEX);
 
       if (emojiMatches) {
         $.each(emojiMatches, function(index, match){
-          text = text.replace(/[^\u0000-\u007F]+/, "<span class='emoji'>"+match+"</span>");
+          text = text.replace(UNICODE_REGEX, "<span class='emoji'>"+match+"</span>");
+        });
+      }
+
+      var urlMatches = text.match(URL_REGEX);
+      console.log(urlMatches);
+      if (urlMatches) {
+        $.each(urlMatches, function(index, match){
+          text = text.replace(URL_REGEX, "<a class='heavy' target='_blank' href='"+match+"'>"+match+"</a>");
         });
       }
 
