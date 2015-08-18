@@ -1,0 +1,4 @@
+pusher==1.2.3
+Flask==0.10.1
+cryptography
+gunicorn
