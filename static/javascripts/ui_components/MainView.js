@@ -18,7 +18,7 @@ var MainView = React.createClass({
 
   componentWillMount: function() {
 
-    this.pusher = new Pusher('faa685e4bb3003eb825c');
+    this.pusher = new Pusher(PUSHER_CHAT_APP_KEY);
     this.chatRoom = this.pusher.subscribe('messages');
 
   },

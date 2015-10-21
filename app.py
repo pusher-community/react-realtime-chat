@@ -17,7 +17,7 @@ pusher = Pusher(
 
 @app.route("/")
 def show_index():
-    return render_template('index.html')
+    return render_template('index.html', pusher_app_key=key)
 
 @app.route('/messages', methods=['POST'])
 def new_message():

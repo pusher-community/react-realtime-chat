@@ -13,7 +13,11 @@
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="/static/javascripts/jquery.emojipicker.js"></script>
   <script type="text/javascript" src="/static/javascripts/jquery.emojipicker.tw.js"></script>
-  <script src="https://js.pusher.com/2.2/pusher.min.js"></script>
+  <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
+  <script>
+    Pusher.log = function(msg) { console.log(msg); };
+    var PUSHER_CHAT_APP_KEY = '{{ pusher_app_key }}';
+  </script>
   <script src="/static/javascripts/ui_components/Messages.js" type="text/jsx"></script>
   <script src="/static/javascripts/ui_components/WelcomeView.js" type="text/jsx"></script>
   <script src="/static/javascripts/ui_components/MainView.js" type="text/jsx"></script> 
