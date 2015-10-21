@@ -17,7 +17,6 @@ var Messages = React.createClass({
       }
 
       var urlMatches = text.match(URL_REGEX);
-      console.log(urlMatches);
       if (urlMatches) {
         $.each(urlMatches, function(index, match){
           text = text.replace(URL_REGEX, "<a class='heavy' target='_blank' href='"+match+"'>"+match+"</a>");
