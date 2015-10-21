@@ -20,7 +20,7 @@ var MainView = React.createClass({
 
     this.pusher = new Pusher(PUSHER_CHAT_APP_KEY);
     this.chatRoom = this.pusher.subscribe('messages');
-
+    this.chatRoom.bind('pusher:subscription_succeeded', this.retrieveHistory, this);
   },
 
   componentDidMount: function() {
