@@ -1,7 +1,7 @@
 from pusher import Pusher
 import os
 import cgi
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__,  static_url_path='/static')
 
@@ -21,14 +21,21 @@ def show_index():
 
 @app.route('/messages', methods=['POST'])
 def new_message():
-  name, text = request.form['name'],  cgi.escape(request.form['text'])
-  time = request.form['time']
-  pusher.trigger('messages', 'new_message', {
+  name, text = cgi.escape(request.form['name']),  cgi.escape(request.form['text'])
+  time = cgi.escape(request.form['time'])
+  
+  message = {
     'text': text,
     'name': name,
     'time': time
-  })
-  return "great success!"
+  }
+  
+  try:
+      pusher.trigger('messages', 'new_message', message)
+  except Exception as e:
+      print("Error triggering the event via Pusher %s" % e)
+        
+  return jsonify(message)
 
 if __name__ == "__main__":
     app.run(debug=True)
