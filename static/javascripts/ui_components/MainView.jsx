@@ -1,29 +1,18 @@
 var MainView = React.createClass({
 
   getInitialState: function() {
-
-    var messages = ['Hi there! 😘', 'Welcome to your chat app', 'See the tutorial at http://blog.pusher.com/react-chat'];
-    messages = messages.map(function(msg){
-      return {
-        name: 'pusher',
-        time: new Date(),
-        text: msg
-      }
-    });
-
     return {
-      messages: messages
+      messages: []
     };
   },
 
   componentWillMount: function() {
-
-    this.pusher = new Pusher(PUSHER_CHAT_APP_KEY);
-    this.chatRoom = this.pusher.subscribe('messages');
-    this.chatRoom.bind('pusher:subscription_succeeded', this.retrieveHistory, this);
   },
 
   componentDidMount: function() {
+    
+    this.pusher = new Pusher(PUSHER_CHAT_APP_KEY);
+    this.chatRoom = this.pusher.subscribe('messages');
 
     this.chatRoom.bind('new_message', function(message){
       this.setState({messages: this.state.messages.concat(message)})
@@ -40,8 +29,6 @@ var MainView = React.createClass({
       }); 
 
     });
-
-
 
   },
 
@@ -82,7 +69,6 @@ var MainView = React.createClass({
   render: function() {
 
     if (!this.props.name) var style = {display:'none'}
-
 
     var body = (
       <div className="light-grey-blue-background chat-app">
