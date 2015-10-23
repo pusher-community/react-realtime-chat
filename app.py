@@ -25,7 +25,8 @@ def show_index():
     
 @app.route('/messages', methods=['GET'])
 def get_messages():
-    messages = repo.get_all();
+    after_id = request.args.get('after_id', 0)
+    messages = repo.get_all(after_id);
     return jsonify(messages)    
 
 @app.route('/messages', methods=['POST'])

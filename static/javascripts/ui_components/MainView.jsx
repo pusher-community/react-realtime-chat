@@ -63,7 +63,9 @@ var MainView = React.createClass({
    */  
   retrieveHistory: function() {
     var self = this;
-    $.get('/messages').success(function(response) {
+    var lastMessage = this.state.messages[this.state.messages.length-1];
+    var lastId = (lastMessage? lastMessage.id : 0);
+    $.get('/messages', {after_id: lastId}).success(function(response) {
       response.results.forEach(self.addMessage, self);
     });
   },
