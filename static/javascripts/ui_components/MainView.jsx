@@ -29,10 +29,30 @@ var MainView = React.createClass({
   },
   
   /**
-   * Add the given message to the UI.
+   * Check if the given message already exists within the
+   * current set of messages based on the `id` property.
    */  
-  addMessage: function(message){
-    this.setState({messages: this.state.messages.concat(message)})
+  messageExists: function(message) {
+    var getId = function(e) { return e.id; };
+    var ids = this.state.messages.map(getId);
+    return ids.indexOf(message.id) !== -1;
+  },
+
+  /**
+   * Add the given message to the UI. Also performs duplicate
+   * checks and sorts the messages by time.
+   */
+  addMessage: function(message) {
+    if(this.messageExists(message)) {
+      console.warn('Duplicate message detected');
+      return;
+    }
+   
+    var messages = this.state.messages.concat(message);
+    messages.sort(function(a, b) {
+      return (a.time > b.time);
+    });
+    this.setState({messages: messages})
 
     $("#message-list").scrollTop($("#message-list")[0].scrollHeight);
   },
