@@ -13,13 +13,9 @@ var MainView = React.createClass({
     
     this.pusher = new Pusher(PUSHER_CHAT_APP_KEY);
     this.chatRoom = this.pusher.subscribe('messages');
+    this.chatRoom.bind('pusher:subscription_succeeded', this.retrieveHistory, this);
 
-    this.chatRoom.bind('new_message', function(message){
-      this.setState({messages: this.state.messages.concat(message)})
-
-      $("#message-list").scrollTop($("#message-list")[0].scrollHeight);
-
-    }, this);
+    this.chatRoom.bind('new_message', this.addMessage, this);
 
     $(document).ready(function(){
       $('#msg-input').emojiPicker({
@@ -30,6 +26,26 @@ var MainView = React.createClass({
 
     });
 
+  },
+  
+  /**
+   * Add the given message to the UI.
+   */  
+  addMessage: function(message){
+    this.setState({messages: this.state.messages.concat(message)})
+
+    $("#message-list").scrollTop($("#message-list")[0].scrollHeight);
+  },
+
+  /**
+   * Fetch existing messages from a `/messages` endpoint
+   * using a `GET` request.
+   */  
+  retrieveHistory: function() {
+    var self = this;
+    $.get('/messages').success(function(response) {
+      response.results.forEach(self.addMessage, self);
+    });
   },
 
   sendMessage: function(text){

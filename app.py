@@ -3,6 +3,8 @@ import os
 import cgi
 from flask import Flask, render_template, request, jsonify
 
+from messages_repo import MessagesRepo
+
 app = Flask(__name__,  static_url_path='/static')
 
 app_id = os.environ.get('PUSHER_CHAT_APP_ID')
@@ -15,20 +17,22 @@ pusher = Pusher(
   secret=secret
 )
 
+repo = MessagesRepo()
+
 @app.route("/")
 def show_index():
     return render_template('index.html', pusher_app_key=key)
+    
+@app.route('/messages', methods=['GET'])
+def get_messages():
+    messages = repo.get_all();
+    return jsonify(messages)    
 
 @app.route('/messages', methods=['POST'])
 def new_message():
   name, text = cgi.escape(request.form['name']),  cgi.escape(request.form['text'])
-  time = cgi.escape(request.form['time'])
   
-  message = {
-    'text': text,
-    'name': name,
-    'time': time
-  }
+  message = repo.create(name, text)
   
   try:
       pusher.trigger('messages', 'new_message', message)
