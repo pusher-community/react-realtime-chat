@@ -6,7 +6,7 @@ var WelcomeView = React.createClass({
     var name = this.props.name;
 
     if (name) {
-      view = <h3 className="light white">Welcome <b>{name}</b></h3>
+      view = <h3 className="light white">hey <b>{name}</b> start chat with your friend</h3>
     } else {
       view = (
         <div style={{marginTop: '20px'}}>
